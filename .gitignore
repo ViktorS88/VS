@@ -10,3 +10,4 @@ app/css/*.css
 node_modules/
 Thumbs.dbt
 HTML_academy_project
+dist
