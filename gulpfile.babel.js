@@ -23,6 +23,7 @@ import modernizrConfig from './modernizr-config.json';
 
 const dirs = pkg['h5bp-configs'].directories;
 
+
 // ---------------------------------------------------------------------
 // | Helper tasks                                                      |
 // ---------------------------------------------------------------------
@@ -177,6 +178,7 @@ gulp.task('lint:js', () =>
 // | Main tasks                                                        |
 // ---------------------------------------------------------------------
 
+
 gulp.task('archive', (done) => {
   runSequence(
     'build',
@@ -193,3 +195,42 @@ gulp.task('build', (done) => {
 });
 
 gulp.task('default', ['build']);
+
+// ----------------
+// мой код начинается
+// -----------------
+var  less = require('gulp-less'), //Подключаем less пакет
+  browserSync = require('browser-sync'), // Подключаем Browser Sync
+  plumber = require('gulp-plumber'); // Подключаем библиотеку для автоматического добавления префиксов
+
+gulp.task('less', function(){ // Создаем таск less
+     gulp.src('src/less/*.less') // Берем источник
+        .pipe(plumber())
+        .pipe(less()) // Преобразуем less в CSS посредством gulp-less
+        .pipe(gulp.dest('src/css')) // Выгружаем результата в папку app/css
+        .pipe(browserSync.reload({stream: true})) // Обновляем CSS на странице при изменении
+});
+
+gulp.task('browser-sync', function() { // Создаем таск browser-sync
+    browserSync({ // Выполняем browserSync
+        server: { // Определяем параметры сервера
+            baseDir: 'src' // Директория для сервера - app
+        },
+        port: 8080,
+        open: true,
+        notify: false // Отключаем уведомления
+    });
+});
+gulp.task('watch', ['browser-sync'], function() {
+    gulp.watch('src/less/**/*.less', ['less']);
+    gulp.watch('src/**/*.html', browserSync.reload);
+    gulp.watch('src/js/**/*.js', browserSync.reload);
+    gulp.watch('src/js/**/*.css', browserSync.reload);
+    // gulp.watch('src/css/**/*.css', browserSync.reload);
+
+});
+
+gulp.task('tv', ['watch', 'browser-sync']);
+// --------------------------------
+//здесь мои таски заканчиваются
+// --------------------------------

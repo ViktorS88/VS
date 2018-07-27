@@ -26,7 +26,14 @@
     "run-sequence": "^2.2.1",
     "ssri": "^6.0.0",
     "strip-json-comments": "^2.0.1",
-    "travis-after-all": "^1.4.5"
+    "travis-after-all": "^1.4.5",
+    "gulp4": "^4.0.2",
+    "gulp-less": "^3.3.2",
+    "gulp-plumber": "^1.1.0",
+    "gulp-uglifyjs": "^0.6.2",
+    "gulp-scss": "^1.4.0",
+    "browser-sync": "^2.18.13",
+    "gulp-concat": "^2.6.1"
   },
   "engines": {
     "node": ">=6",
