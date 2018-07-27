@@ -1,0 +1,12 @@
+archive
+.DS_Store
+.idea
+*.ai
+*.log
+*.pdf
+*.psd
+*.sublime*
+app/css/*.css
+node_modules/
+Thumbs.dbt
+HTML_academy_project
